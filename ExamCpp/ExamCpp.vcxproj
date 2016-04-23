@@ -151,11 +151,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="error.h" />
+    <ClInclude Include="game.h" />
     <ClInclude Include="screen.h" />
     <ClInclude Include="console_graphics.h" />
     <ClInclude Include="screen_object.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="game.cpp" />
     <ClCompile Include="screen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="screen_object.cpp" />

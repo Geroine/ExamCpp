@@ -21,10 +21,8 @@ void main()
 	subj2.setX(9);
 	SubjectGroup group;
 	Subject &ptsubj = group.push(subj2);
-	//group.push(subj1);
-	group.blitAllTo(screen);
-	screen.draw();
-	ptsubj.setX(11);
-	group.blitAllTo(screen);
-	screen.draw();
+	group.push(subj1);
+	cout << group.erase(subj1) << endl;
+	cout << group.erase(subj2) << endl;
+	cout << group.erase(ptsubj) << endl;
 }

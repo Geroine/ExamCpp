@@ -34,7 +34,7 @@ int Subject::getX(){
 int Subject::getY(){
 	return y;
 }
-
+// Функция сравнивает только по ширине и длинне. Доделать!
 bool Subject::collide(Subject & obj){
 	int diffX = obj.x - x;
 	int diffY = obj.y - y;
@@ -62,8 +62,9 @@ SubjectGroup::SubjectGroup(){
 void SubjectGroup::blitAllTo(Canvas & canv){
 	Canvas* ptSubj;
 	Subject subj;
+	auto start = subjects.begin();
 	for (int i = 0; i < size; i++) {
-		subj = subjects[i];
+		subj = *(start++);
 		ptSubj = &subj;
 		canv.blit(*ptSubj,subj.getX(),subj.getY());
 	}
@@ -71,7 +72,11 @@ void SubjectGroup::blitAllTo(Canvas & canv){
 
 void SubjectGroup::blitTo(Canvas & canv, int id){
 	if (id < 0 || id >= size) throw Error("SubjectGroup blit: wrong id. Size = " + to_string(size) + " ; Id = " + to_string(id));
-	Subject subj = subjects[id];
+	auto start = subjects.begin();
+	for (int i = 0; i < id; i++) {
+		start++;
+	}
+	Subject subj = *start;
 	Canvas* ptSubj = &subj;
 	canv.blit(*ptSubj, subj.getX(), subj.getY());
 }
@@ -79,7 +84,7 @@ void SubjectGroup::blitTo(Canvas & canv, int id){
 Subject& SubjectGroup::push(Subject & subj){
 	subjects.push_back(subj);
 	size++;
-	return subjects[subjects.size()-1];
+	return *--subjects.end();
 }
 
 void SubjectGroup::clear(){
@@ -89,17 +94,24 @@ void SubjectGroup::clear(){
 
 bool SubjectGroup::erase(int id){
 	if (id < 0 || id >= size) return false;
-	auto iter = subjects.begin() + id;
-	subjects.erase(iter);
+	auto start = subjects.begin();
+	for (int i = 0; i < id; i++) {
+		start++;
+	}
+	subjects.erase(start);
 	return true;
 }
 
 // Выбивает ошибку типизации. Чёрт знает!
 bool SubjectGroup::erase(Subject & subj){
-	//auto iter = find(subjects.begin(), subjects.end(), subj);
-	//if (iter == subjects.end()) return false;
-	//subjects.erase(iter);
-	//return true;
+	auto iter = subjects.begin();
+	while (iter != subjects.end()) {
+		if (&(*iter) == &subj) {
+			subjects.erase(iter);
+			return true;
+		}
+		iter++;
+	}
 	return false;
 }
 

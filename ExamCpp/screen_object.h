@@ -11,7 +11,6 @@ protected:
 public:
 	Subject(int w = 0, int h = 0, int depth = 0);
 	Subject(Canvas &canv, int depth = 0);
-	bool operator==(Subject& obj) { return false; };
 	void setX(int x);
 	void setY(int y);
 	void setPos(int x, int y);
@@ -23,7 +22,7 @@ public:
 
 class SubjectGroup {
 protected:
-	vector<Subject> subjects;
+	list<Subject> subjects;
 	int size;
 public:
 	SubjectGroup();
