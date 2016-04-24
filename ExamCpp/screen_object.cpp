@@ -14,6 +14,21 @@ Subject::Subject(Canvas & canv, int depth){
 	y = 0;
 }
 
+Subject & Subject::operator=(Canvas & obj){
+	Canvas::operator=(obj);
+	return *this;
+}
+
+Subject & Subject::operator=(Subject & obj){
+	if (this == &obj) return *this;
+	Canvas::operator=(obj);
+	x = obj.x;
+	y = obj.y;
+	depth = obj.depth;
+
+	return *this;
+}
+
 void Subject::setX(int x){
 	this->x = x;
 }
@@ -115,6 +130,13 @@ bool SubjectGroup::erase(Subject & subj){
 	return false;
 }
 
+Subject & SubjectGroup::operator[](int id){
+	auto iter = subjects.begin();
+	for (int i = 0; i < id; i++, iter++);
+	return *iter;
+}
+
+
 SmartScreen::SmartScreen(int w, int h):Screen(w,h) {}
 SmartScreen::SmartScreen(int w, int h, Symbol bckg): Screen(w,h,bckg){};
 
@@ -126,4 +148,12 @@ void SmartScreen::blit(Subject & obj, int dx, int dy, int dWidth, int dHeight){
 void SmartScreen::blit(Subject & obj){
 	Canvas* canv = &obj;
 	Screen::blit(*canv, obj.getX(), obj.getY());
+}
+
+void SmartScreen::blit(Canvas & obj, int x, int y){
+	Screen::blit(obj, x, y);
+}
+
+void SmartScreen::blit(Canvas & obj, int sx, int sy, int dx, int dy, int dWidth, int dHeight){
+	Screen::blit(obj, sx, sy, dx, dy, dWidth, dHeight);
 }

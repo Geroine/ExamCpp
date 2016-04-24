@@ -1,5 +1,7 @@
 #include "screen.h"
 #include "console_graphics.h"
+#include "string"
+#include "error.h"
 
 // Символ
 Symbol::Symbol(char s, int c, int b){
@@ -70,6 +72,10 @@ Canvas::Canvas(int w, int h){
 
 
 Symbol& Canvas::operator()(int x, int y){
+	if (y >= canv.size() || y < 0) throw Error("Canvas operator(): bad 'y' argument. Taked " + 
+		to_string(y) + " . And size = " + to_string(canv.size()));
+	if (x >= canv[y].size() || x < 0) throw Error("Canvas operator(): bad 'x' argument. Taked " +
+		to_string(y) + " . And size = " + to_string(canv[y].size()));
 	return canv[y][x];
 }
 

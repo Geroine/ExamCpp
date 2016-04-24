@@ -48,12 +48,12 @@ protected:
     int height;
 public:
     Canvas(int w = 50, int h = 30);
-	Symbol& operator()(int x, int y);
+	virtual Symbol& operator()(int x, int y);
 	Canvas& operator=(Canvas& obj);
 	bool operator==(Canvas& obj) { return false; };
 	// Не проверен
 	void blit(Canvas& obj, int sx, int sy, int dx, int dy, int dWidth, int dHeight);
-	void blit(Canvas& obj, int sx, int sy);
+	virtual void blit(Canvas& obj, int sx, int sy);
 	int getWidth();
 	int getHeight();
 

@@ -54,7 +54,7 @@ KeyboardEvent::KeyboardEvent(){
 }
 
 void KeyboardEvent::operator()(){
-	cout << "Down" << endl;
+
 }
 
 KeypressedEvent::KeypressedEvent(int key, cfunc func){
