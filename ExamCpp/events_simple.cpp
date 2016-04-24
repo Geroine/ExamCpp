@@ -88,6 +88,11 @@ void EventListener::process(){
 }
 
 void EventListener::clear(){
+	auto iter = events.begin();
+	while (iter != events.end()) {
+		delete *iter;
+		iter++;
+	}
 	events.clear();
 }
 
@@ -99,6 +104,7 @@ bool EventListener::off(KeyboardEvent * ev){
 	auto iter = events.begin();
 	while (iter != events.end()) {
 		if (&(*iter) == &ev) {
+			delete *iter;
 			events.erase(iter);
 			return true;
 		}

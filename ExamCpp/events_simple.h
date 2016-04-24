@@ -28,7 +28,6 @@ public:
 };
 
 class EventListener {
-	//queue<KeyboardEvent> toProcess;
 	vector<KeyboardEvent*> events;
 public:
 	EventListener();
