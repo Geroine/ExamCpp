@@ -48,7 +48,7 @@ protected:
     int height;
 public:
     Canvas(int w = 50, int h = 30);
-	virtual Symbol& operator()(int x, int y);
+	Symbol& operator()(int x, int y);
 	Canvas& operator=(Canvas& obj);
 	bool operator==(Canvas& obj) { return false; };
 	// Не проверен

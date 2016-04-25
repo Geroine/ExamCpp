@@ -39,7 +39,10 @@
     <ClInclude Include="events_simple.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="game.h">
+    <ClInclude Include="game_basic.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game_object.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,7 +62,10 @@
     <ClCompile Include="events_simple.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="game.cpp">
+    <ClCompile Include="game_basic.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game_object.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
   </ItemGroup>

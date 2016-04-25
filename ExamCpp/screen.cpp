@@ -93,8 +93,8 @@ void Canvas::blit(Canvas & obj, int sx, int sy, int dx, int dy, int dWidth, int 
 	if (dWidth < 0) dWidth = 0;
 	if (dHeight < 0) dHeight = 0;
 
-	for (int i = sy, oi = dy; i < this->getHeight() && oi < dHeight; oi++, i++) {
-		for (int j = sx, oj = dx; j < this->getWidth() && oj < dWidth; oj++, j++) {
+	for (int i = sy, oi = dy, oit = 0; i < this->getHeight() && oit < dHeight && oi < obj.getHeight(); oit++, oi++, i++) {
+		for (int j = sx, oj = dx, ojt = 0; j < this->getWidth() && ojt < dWidth && oj < obj.getWidth(); ojt++, oj++, j++) {
 			if (sx < 0 || sy < 0 || dx < 0 || dy < 0) continue;
 			if (obj(oj, oi).visible) {
 				if (obj(oj, oi) != operator()(j, i)) {
@@ -144,34 +144,11 @@ Screen::Screen(int w, int h, Symbol bckg){
 }
 
 void Screen::blit(Canvas & obj, int sx, int sy, int dx, int dy, int dWidth, int dHeight){
-	if (dWidth > obj.getWidth()) dWidth = obj.getWidth();
-	if (dHeight > obj.getHeight()) dHeight = obj.getHeight();
-	if (dWidth < 0) dWidth = 0;
-	if (dHeight < 0) dHeight = 0;
-
-	for (int i = sy, oi = dy; i < frame.getHeight() && oi < dHeight; oi++, i++) {
-		for (int j = sx, oj = dx; j < frame.getWidth() && oj < dWidth; oj++, j++) {
-			if (sx < 0 || sy < 0 || dx < 0 || dy < 0) continue;
-			if (obj(oj, oi).visible) {
-				if (obj(oj, oi) != frame(j, i)) {
-					frame(j, i) = obj(oj, oi);
-				}
-			}
-		}
-	}
+	frame.blit(obj, sx, sy, dx, dy, dWidth, dHeight);
 }
 
 void Screen::blit(Canvas & obj, int sx = 0, int sy = 0){
-	for (int i = sy, oi = 0; i < frame.getHeight() && oi < obj.getHeight(); oi++, i++) {
-		for (int j = sx, oj = 0; j < frame.getWidth() && oj < obj.getWidth(); oj++, j++) {
-			if (obj(oj, oi).visible) {
-				if (sx < 0 || sy < 0) continue;
-				if (obj(oj, oi) != frame(j, i)) {
-					frame(j, i) = obj(oj, oi);
-				}
-			}
-		}
-	}
+	frame.blit(obj, sx, sy);
 }
 
 void Screen::draw(){
