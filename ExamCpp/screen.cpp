@@ -186,3 +186,7 @@ int Screen::getHeight(){
 Screen::operator Canvas&(){
 	return frame;
 }
+
+Canvas & Screen::canvas(){
+	return frame;
+}

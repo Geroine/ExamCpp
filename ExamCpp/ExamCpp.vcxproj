@@ -154,19 +154,19 @@
     <ClInclude Include="events.h" />
     <ClInclude Include="events_simple.h" />
     <ClInclude Include="game_basic.h" />
-    <ClInclude Include="game_object.h" />
     <ClInclude Include="screen.h" />
     <ClInclude Include="console_graphics.h" />
     <ClInclude Include="screen_object.h" />
+    <ClInclude Include="unit.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="events.cpp" />
     <ClCompile Include="events_simple.cpp" />
     <ClCompile Include="game_basic.cpp" />
-    <ClCompile Include="game_object.cpp" />
     <ClCompile Include="screen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="screen_object.cpp" />
+    <ClCompile Include="unit.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

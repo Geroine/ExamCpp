@@ -77,6 +77,7 @@ public:
 	int getWidth();
 	int getHeight();
 	operator Canvas&();
+	Canvas& canvas();
 
 };
 

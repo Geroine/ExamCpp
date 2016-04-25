@@ -29,14 +29,18 @@ void GameObject::setFrame(int index){
 	frameIndex = index;
 }
 
-Frame & GameObject::getFrame(int index){
-	if (index < 0 || index >= frames.size()) throw Error("GameObject getFrame: wrong id. Size = " +
-		to_string(frames.size()) + " ; Id = " + to_string(index));
+Frame & GameObject::frameLink(int index){
+	if (index < 0 || index >= frames.size()) throw Error("Wrong index");
+	return frames[index];
+}
+
+Frame GameObject::getFrame(int index){
+	if (index < 0 || index >= frames.size()) return Frame();
 	return frames[index];
 }
 
 
-Frame & GameObject::curFrame(){
+Frame GameObject::curFrame(){
 	if (frameIndex >= frames.size() || frameIndex < 0) return fullFrame();
 	return frames[frameIndex];
 }
@@ -53,6 +57,11 @@ void GameObject::blit(Canvas & obj){
 	} else {
 		Canvas::blit(obj, x, y);
 	}
+}
+
+Canvas GameObject::canvas(int frameId){
+	Frame frame = getFrame(frameId);
+	return Canvas();
 }
 
 Canvas GameObject::canvas(){

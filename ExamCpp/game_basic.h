@@ -33,20 +33,15 @@ public:
 	int framesSize();
 	void framePush(Frame& frame);
 	void setFrame(int index);
-	Frame& getFrame(int index);
-	Frame& curFrame();
+	Frame& frameLink(int index);
+	Frame getFrame(int index);
+	Frame curFrame();
 	int getFrameIndex();
 	void blit(Canvas& obj);
+	Canvas canvas(int frame);
 	Canvas canvas();
 	Subject subject();
 	Symbol& operator()(int x, int y, int frame);
-	Symbol& operator()(int x, int y);
+	Symbol& operator()(int x, int y); 
 };
 
-class GameObjectGroup: public SubjectGroup {
-
-};
-
-class Processor {
-
-};
