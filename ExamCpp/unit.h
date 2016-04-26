@@ -1,19 +1,26 @@
 #pragma once
 #include <list>
 #include "game_basic.h"
+#include "processor.h"
 using namespace std;
 
 class Unit : public GameObject {
 protected:
 	int hp;
 	Unit* focus;
+	UnitGroup* group;
 public:
 	Unit(GameObject& obj, int hp = 100);
+	Unit(GameObject& obj, UnitGroup& group, int hp = 100);
 	Unit();
 	Unit& operator=(Canvas& obj);
 	Unit& operator=(Subject& obj);
 	Unit& operator=(GameObject& obj);
 	Unit& operator=(Unit& obj);
+
+	void setGroup(UnitGroup& g);
+	void exitGroup();
+	UnitGroup* getGroup();
 
 	virtual void iteration() {  };
 
@@ -52,7 +59,7 @@ class UnitGroup : public Process {
 public:
 	UnitGroup();
 	UnitGroup(UnitContainer& container);
-	void push(Unit& unit);
+	void push(Unit& unit, bool linkGroup = true);
 	void push(UnitContainer& container);
 	bool erase(Unit& unit);
 	void clear();
@@ -64,21 +71,5 @@ public:
 	void iterateAll();
 	void blitAll(Canvas& canv);
 
-	void iterate();
-};
-
-class Process {
-public:
-	virtual void iterate() = 0;
-};
-
-class Processor {
-	list<Process*> processes;
-public:
-	void push(Process& proc);
-	bool erase(Process& proc);
-	void clear();
-
-	list<Process*>::iterator begin();
-	list<Process*>::iterator end();
+	bool iterate();
 };

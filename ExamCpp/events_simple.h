@@ -5,7 +5,7 @@
 #include <functional>
 using namespace std;
 
-typedef function<void()> cfunc;
+typedef function<bool()> cfunc;
 class KeyboardEvent {
 protected:
 	int keycode;

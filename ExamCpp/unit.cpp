@@ -4,12 +4,18 @@ Unit::Unit(GameObject & obj, int hp)
 	:GameObject(obj){
 	this->hp = hp;
 	focus = nullptr;
+	group = nullptr;
+}
+
+Unit::Unit(GameObject & obj, UnitGroup & group, int hp) {
+	this->group = &group;
 }
 
 Unit::Unit()
 	:GameObject(){
 	hp = 100;
 	focus = nullptr;
+	group = nullptr;
 }
 
 Unit & Unit::operator=(Canvas & obj){
@@ -31,7 +37,20 @@ Unit & Unit::operator=(Unit & obj){
 	GameObject::operator=(obj);
 	hp = obj.hp;
 	focus = obj.focus;
+	group = obj.group;
 	return *this;
+}
+
+void Unit::setGroup(UnitGroup & g) {
+	group = &g;
+}
+
+void Unit::exitGroup() {
+	group = nullptr;
+}
+
+UnitGroup * Unit::getGroup() {
+	return group;
 }
 
 UnitGroup::UnitGroup(){
@@ -42,7 +61,8 @@ UnitGroup::UnitGroup(UnitContainer & container){
 	push(container);
 }
 
-void UnitGroup::push(Unit& unit){
+void UnitGroup::push(Unit& unit, bool linkGroup) {
+	if (linkGroup) unit.setGroup(*this);
 	units.push_back(&unit);
 }
 
@@ -93,8 +113,9 @@ void UnitGroup::blitAll(Canvas & canv){
 	}
 }
 
-void UnitGroup::iterate(){
+bool UnitGroup::iterate(){
 	iterateAll();
+	return true;
 }
 
 void UnitContainer::push(Unit& unit){
@@ -119,32 +140,4 @@ list<Unit>::iterator UnitContainer::begin(){
 list<Unit>::iterator UnitContainer::end()
 {
 	return units.end();
-}
-
-void Processor::push(Process & proc){
-	processes.push_back(&proc);
-}
-
-bool Processor::erase(Process & proc){
-	auto iter = processes.begin();
-	while (iter != processes.end()) {
-		if (&proc == *iter) {
-			processes.erase(iter);
-			return true;
-		}
-		iter++;
-	}
-	return false;
-}
-
-void Processor::clear(){
-	processes.clear();
-}
-
-list<Process*>::iterator Processor::begin(){
-	return processes.begin();
-}
-
-list<Process*>::iterator Processor::end(){
-	return processes.end();
 }

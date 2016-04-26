@@ -56,7 +56,7 @@ ostream& operator<<(ostream& out, const Symbol& obj){
 }
 
 // Холст (Canvas)
-Canvas::Canvas(int w, int h){
+Canvas::Canvas(int w, int h, Symbol bckg){
     if (w < 0) w = 50;
     if (h < 0) h = 30;
     if (w > 100) w = 100;
@@ -68,6 +68,11 @@ Canvas::Canvas(int w, int h){
         vector<Symbol> symbs(width);
         canv.push_back(symbs);
     }
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j < width; j++) {
+			canv[i][j] = bckg;
+		}
+	}
 }
 
 

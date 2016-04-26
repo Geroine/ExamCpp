@@ -18,6 +18,8 @@ public:
 	void setPos(int x, int y);
 	int getX();
 	int getY();
+	void setDepth(int depth);
+	int getDepth();
 	// Не проверен
 	virtual bool collide(Subject& obj);
 };

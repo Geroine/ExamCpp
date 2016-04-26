@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Game">
       <UniqueIdentifier>{9b9e96f0-f78b-486a-bfb5-6d8867442f51}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game\RPG_Game">
+      <UniqueIdentifier>{efe4febb-7e4c-4135-aa3f-05f85ce6c660}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\RPG_Game">
+      <UniqueIdentifier>{9ee3e284-43ec-401d-af7d-a17bd76bffc9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="console_graphics.h">
@@ -45,6 +51,15 @@
     <ClInclude Include="unit.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>Header Files\Game\RPG_Game</Filter>
+    </ClInclude>
+    <ClInclude Include="processor.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="rpg_game.h">
+      <Filter>Header Files\Game\RPG_Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -67,6 +82,12 @@
     </ClCompile>
     <ClCompile Include="unit.cpp">
       <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="processor.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>Source Files\Game\RPG_Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

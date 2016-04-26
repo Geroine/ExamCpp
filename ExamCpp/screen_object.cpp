@@ -49,6 +49,12 @@ int Subject::getX(){
 int Subject::getY(){
 	return y;
 }
+void Subject::setDepth(int depth) {
+	this->depth = depth;
+}
+int Subject::getDepth() {
+	return depth;
+}
 // Функция сравнивает только по ширине и длинне. Доделать!
 bool Subject::collide(Subject & obj){
 	int diffX = obj.x - x;

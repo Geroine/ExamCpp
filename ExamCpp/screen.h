@@ -47,7 +47,7 @@ protected:
     int width;
     int height;
 public:
-    Canvas(int w = 50, int h = 30);
+    Canvas(int w = 50, int h = 30, Symbol bckg = Symbol());
 	Symbol& operator()(int x, int y);
 	Canvas& operator=(Canvas& obj);
 	bool operator==(Canvas& obj) { return false; };

@@ -154,15 +154,20 @@
     <ClInclude Include="events.h" />
     <ClInclude Include="events_simple.h" />
     <ClInclude Include="game_basic.h" />
+    <ClInclude Include="player.h" />
+    <ClInclude Include="processor.h" />
     <ClInclude Include="screen.h" />
     <ClInclude Include="console_graphics.h" />
     <ClInclude Include="screen_object.h" />
     <ClInclude Include="unit.h" />
+    <ClInclude Include="rpg_game.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="events.cpp" />
     <ClCompile Include="events_simple.cpp" />
     <ClCompile Include="game_basic.cpp" />
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="processor.cpp" />
     <ClCompile Include="screen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="screen_object.cpp" />
