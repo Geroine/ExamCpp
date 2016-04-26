@@ -50,7 +50,7 @@ bool KB_Hit(int Key)
 
 KeyboardEvent::KeyboardEvent(){
 	keycode = -1;
-	func = []() {};
+	func = []() -> bool { return false; };
 }
 
 void KeyboardEvent::operator()(){
@@ -75,11 +75,21 @@ void KeydownEvent::operator()(){
 	if (KB_Hit(keycode)) func();
 }
 
+void EventListener::_clear() {
+	auto iter = events.begin();
+	while (iter != events.end()) {
+		delete *iter;
+		iter++;
+	}
+	events.clear();
+}
+
 EventListener::EventListener(){
-	// Nothing :)
+	nextClear = false;
 }
 
 void EventListener::process(){
+	if (nextClear) _clear();
 	auto iter = events.begin();
 	while (iter != events.end()) {
 		(**iter)();
@@ -88,12 +98,7 @@ void EventListener::process(){
 }
 
 void EventListener::clear(){
-	auto iter = events.begin();
-	while (iter != events.end()) {
-		delete *iter;
-		iter++;
-	}
-	events.clear();
+	nextClear = true;
 }
 
 void EventListener::on(KeyboardEvent * ev){

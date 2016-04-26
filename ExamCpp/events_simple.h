@@ -28,7 +28,9 @@ public:
 };
 
 class EventListener {
+	bool nextClear;
 	vector<KeyboardEvent*> events;
+	void _clear();
 public:
 	EventListener();
 	void process();

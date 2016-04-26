@@ -1,10 +1,8 @@
 #include <iostream>
-#include "unit.h"
-#include "events_simple.h"
 #include <Windows.h>
 #include "processor.h"
 #include "rpg_game.h"
-#include "events_simple.h"
+#include "bmp.h"
 using namespace std;
 
 void main(){

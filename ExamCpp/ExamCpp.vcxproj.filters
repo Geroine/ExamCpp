@@ -25,15 +25,15 @@
     <Filter Include="Source Files\Game\RPG_Game">
       <UniqueIdentifier>{9ee3e284-43ec-401d-af7d-a17bd76bffc9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Grpahic">
+      <UniqueIdentifier>{387e7536-450b-4149-9805-7b776a182f1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphic">
+      <UniqueIdentifier>{4a155d80-13ec-4903-b2fe-4b6aeaae93fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="console_graphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="screen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="screen_object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="error.h">
@@ -60,15 +60,18 @@
     <ClInclude Include="rpg_game.h">
       <Filter>Header Files\Game\RPG_Game</Filter>
     </ClInclude>
+    <ClInclude Include="screen.h">
+      <Filter>Header Files\Grpahic</Filter>
+    </ClInclude>
+    <ClInclude Include="screen_object.h">
+      <Filter>Header Files\Grpahic</Filter>
+    </ClInclude>
+    <ClInclude Include="bmp.h">
+      <Filter>Header Files\Grpahic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="screen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="screen_object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="events.cpp">
@@ -88,6 +91,15 @@
     </ClCompile>
     <ClCompile Include="player.cpp">
       <Filter>Source Files\Game\RPG_Game</Filter>
+    </ClCompile>
+    <ClCompile Include="screen.cpp">
+      <Filter>Source Files\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="screen_object.cpp">
+      <Filter>Source Files\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="bmp.cpp">
+      <Filter>Source Files\Graphic</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

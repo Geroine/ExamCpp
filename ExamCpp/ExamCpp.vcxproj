@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="bmp.h" />
     <ClInclude Include="error.h" />
     <ClInclude Include="events.h" />
     <ClInclude Include="events_simple.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="rpg_game.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="bmp.cpp" />
     <ClCompile Include="events.cpp" />
     <ClCompile Include="events_simple.cpp" />
     <ClCompile Include="game_basic.cpp" />

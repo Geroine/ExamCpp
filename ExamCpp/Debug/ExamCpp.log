@@ -1,7 +1,4 @@
-﻿  unit.cpp
-player.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall Player::control(void)" (?control@Player@@UAEXXZ)
-player.obj : error LNK2001: unresolved external symbol "public: virtual bool __thiscall Player::moveLeft(void)" (?moveLeft@Player@@UAE_NXZ)
-player.obj : error LNK2001: unresolved external symbol "public: virtual bool __thiscall Player::moveRight(void)" (?moveRight@Player@@UAE_NXZ)
-player.obj : error LNK2001: unresolved external symbol "public: virtual bool __thiscall Player::moveUp(void)" (?moveUp@Player@@UAE_NXZ)
-player.obj : error LNK2001: unresolved external symbol "public: virtual bool __thiscall Player::moveDown(void)" (?moveDown@Player@@UAE_NXZ)
-C:\Users\Den10\Source\Repos\ExamCpp\Debug\ExamCpp.exe : fatal error LNK1120: 5 unresolved externals
+﻿  bmp.cpp
+c:\users\den10\source\repos\examcpp\examcpp\bmp.cpp(293): warning C4018: '>=': signed/unsigned mismatch
+c:\users\den10\source\repos\examcpp\examcpp\bmp.cpp(295): warning C4018: '>=': signed/unsigned mismatch
+  ExamCpp.vcxproj -> C:\Users\Den10\Source\Repos\ExamCpp\Debug\ExamCpp.exe

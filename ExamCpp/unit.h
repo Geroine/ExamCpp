@@ -4,6 +4,8 @@
 #include "processor.h"
 using namespace std;
 
+class UnitGroup;
+
 class Unit : public GameObject {
 protected:
 	int hp;

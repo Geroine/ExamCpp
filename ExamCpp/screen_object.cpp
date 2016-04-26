@@ -5,6 +5,8 @@
 
 Subject::Subject(int w, int h, int depth):Canvas(w,h){
 	this->depth = depth;
+	x = 0;
+	y = 0;
 }
 
 Subject::Subject(Canvas & canv, int depth){
