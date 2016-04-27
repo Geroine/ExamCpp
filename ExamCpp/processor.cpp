@@ -1,6 +1,10 @@
 #include "processor.h"
 #include <list>
+#include <windows.h>
 using namespace std;
+Processor::Processor(int fps) {
+	this->fps = fps;
+}
 void Processor::push(Process & proc) {
 	processes.push_back(&proc);
 }
@@ -26,6 +30,10 @@ int Processor::getSize() {
 }
 
 bool Processor::process(){
+	int start = time(0),
+		end,
+		diff;
+
 	if (processes.size() == 0) return false;
 	list<list<Process*>::iterator> toRemove;
 	auto iter = processes.begin();
@@ -39,6 +47,12 @@ bool Processor::process(){
 		processes.erase(*riter);
 		riter++;
 	}
+
+	end = time(0);
+	diff = end - start;
+	if (diff < 1000 / fps)
+		Sleep(1000 / fps - diff);
+
 	return true;
 }
 

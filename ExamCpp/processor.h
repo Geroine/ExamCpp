@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include <time.h>
 using namespace std;
 
 class Process {
@@ -9,7 +10,9 @@ public:
 
 class Processor {
 	list<Process*> processes;
+	int fps;
 public:
+	Processor(int fps = 10);
 	void push(Process& proc);
 	bool erase(Process& proc);
 	void clear();

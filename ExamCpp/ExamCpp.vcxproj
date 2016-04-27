@@ -162,6 +162,7 @@
     <ClInclude Include="screen_object.h" />
     <ClInclude Include="unit.h" />
     <ClInclude Include="rpg_game.h" />
+    <ClInclude Include="wall.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bmp.cpp" />
@@ -174,6 +175,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="screen_object.cpp" />
     <ClCompile Include="unit.cpp" />
+    <ClCompile Include="wall.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

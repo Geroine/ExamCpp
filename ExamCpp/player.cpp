@@ -1,13 +1,19 @@
 #include "player.h"
 #include <Windows.h>
 
-Player::Player() 
-	:Unit(Sprites().player){
-	keyboard.on(new KeydownEvent(VK_UP, [this]()-> bool { this->moveUp(); this->setFrame(0); return true; }));
-	keyboard.on(new KeydownEvent(VK_DOWN, [this]()-> bool { this->moveDown(); this->setFrame(2); return true; }));
-	keyboard.on(new KeydownEvent(VK_LEFT, [this]()-> bool { this->moveLeft(); this->setFrame(1); return true; }));
-	keyboard.on(new KeydownEvent(VK_RIGHT, [this]()-> bool { this->moveRight(); this->setFrame(3); return true; }));
-	keyboard.on(new KeydownEvent(VK_SHIFT, [this]()-> bool {this->setFrame(-1); this->keyboard.clear();  return true; }));
+Player::Player(Canvas& sprites){
+	Unit::operator=(sprites);
+	type = "player";
+	for (int i = 0; i < 4; i++) {
+		framePush(Frame(i * 4, 0, 4, 4));
+	}
+	setFrame(0);
+	// KeydownEvent KeypressedEvent
+	keyboard.on(new KeypressedEvent(VK_UP, [this]()-> bool { this->moveUp(); this->setFrame(0); return true; }));
+	keyboard.on(new KeypressedEvent(VK_DOWN, [this]()-> bool { this->moveDown(); this->setFrame(2); return true; }));
+	keyboard.on(new KeypressedEvent(VK_LEFT, [this]()-> bool { this->moveLeft(); this->setFrame(1); return true; }));
+	keyboard.on(new KeypressedEvent(VK_RIGHT, [this]()-> bool { this->moveRight(); this->setFrame(3); return true; }));
+	keyboard.on(new KeypressedEvent(VK_SHIFT, [this]()-> bool {this->setFrame(-1); this->keyboard.clear();  return true; }));
 }
 
 void Player::iteration() {
@@ -19,21 +25,45 @@ void Player::control() {
 }
 
 bool Player::moveLeft() {
-	x -= 4;
+	if (collide("wall",x-1,y)) return false;
+	x -= 1;
 	return true;
 }
 
 bool Player::moveRight() {
-	x += 4;
+	if (collide("wall",x+1,y)) return false;
+	x += 1;
 	return true;
 }
 
 bool Player::moveUp() {
-	y -= 4;
+	if (collide("wall",x,y-1)) return false;
+	y -= 1;
 	return true;
 }
 
 bool Player::moveDown() {
-	y += 4;
+	if (collide("wall",x,y+1)) return false;
+	y += 1;
 	return true;
+}
+
+bool Player::collide(string type) {
+	bool contact = false;
+	void_unit_func func = [&contact, &type, this](Unit& unit) mutable {
+		if (unit.getType() != type) return;
+		contact = placeMeeting(unit);
+	};
+	group->foreach(func);
+	return contact;
+}
+
+bool Player::collide(string type, int x, int y) {
+	bool contact = false;
+	void_unit_func func = [x,y,&contact, &type, this](Unit& unit) mutable {
+		if (unit.getType() != type) return;
+		if (placeMeeting(unit, x, y)) contact = true;
+	};
+	group->foreach(func);
+	return contact;
 }

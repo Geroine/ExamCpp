@@ -113,7 +113,7 @@ void Canvas::blit(Canvas & obj, int sx, int sy, int dx, int dy, int dWidth, int 
 void Canvas::blit(Canvas & obj, int sx, int sy){
 	for (int i = sy, oi = 0; i < this->getHeight() && oi < obj.getHeight(); oi++, i++) {
 		for (int j = sx, oj = 0; j < this->getWidth() && oj < obj.getWidth(); oj++, j++) {
-			if (sx < 0 || sy < 0) continue;
+			if (j < 0 || i < 0) continue;
 			if (obj(oj, oi).visible) {
 				if (obj(oj, oi) != operator()(j, i)) {
 					operator()(j, i) = obj(oj, oi);

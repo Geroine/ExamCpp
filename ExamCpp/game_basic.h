@@ -25,6 +25,10 @@ public:
 	GameObject& operator=(Subject& obj);
 	GameObject& operator=(GameObject& obj);
 
+	GameObject& take(Canvas& obj);
+	GameObject&	take(Subject& obj);
+	GameObject&	take(GameObject& obj);
+
 	bool isSolid();
 	void makeSolid();
 	void unSolid();
@@ -43,5 +47,8 @@ public:
 	Subject subject();
 	Symbol& operator()(int x, int y, int frame);
 	Symbol& operator()(int x, int y); 
+
+	virtual bool placeMeeting(GameObject& obj);
+	virtual bool placeMeeting(GameObject& obj, int x, int y);
 };
 

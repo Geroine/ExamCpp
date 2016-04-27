@@ -1,4 +1,9 @@
-﻿  bmp.cpp
-c:\users\den10\source\repos\examcpp\examcpp\bmp.cpp(293): warning C4018: '>=': signed/unsigned mismatch
-c:\users\den10\source\repos\examcpp\examcpp\bmp.cpp(295): warning C4018: '>=': signed/unsigned mismatch
+﻿  screen_object.cpp
+  player.cpp
+  game_basic.cpp
+c:\users\den10\source\repos\examcpp\examcpp\game_basic.cpp(33): warning C4018: '>=': signed/unsigned mismatch
+c:\users\den10\source\repos\examcpp\examcpp\game_basic.cpp(38): warning C4018: '>=': signed/unsigned mismatch
+c:\users\den10\source\repos\examcpp\examcpp\game_basic.cpp(44): warning C4018: '>=': signed/unsigned mismatch
+c:\users\den10\source\repos\examcpp\examcpp\game_basic.cpp(53): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
   ExamCpp.vcxproj -> C:\Users\Den10\Source\Repos\ExamCpp\Debug\ExamCpp.exe

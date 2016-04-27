@@ -92,6 +92,35 @@ Symbol & GameObject::operator()(int x, int y) {
 	int ny = y + curFrame().y;
 	return canv[ny][nx];
 }
+bool GameObject::placeMeeting(GameObject & obj) {
+	return placeMeeting(obj, x, y);
+}
+bool GameObject::placeMeeting(GameObject & obj, int x, int y) {
+	int width = curFrame().width;
+	int height = curFrame().height;
+	int owidth = obj.curFrame().width;
+	int oheight = obj.curFrame().height;
+	int diffX = obj.x - x;
+	int diffY = obj.y - y;
+	int result = 0;
+
+	if (diffX == 0) result++;
+	else
+		if (diffX > 0) {
+			if (width > diffX) result++;
+		} else {
+			if (owidth > abs(diffX)) result++;
+		}
+
+	if (diffY == 0) result++;
+	else
+		if (diffY > 0) {
+			if (height > diffY) result++;
+		} else {
+			if (oheight > abs(diffY)) result++;
+		}
+	return result == 2;
+}
 GameObject::GameObject(int w, int h, int depth, bool solid)
 	:Subject(w, h, depth){
 	this->solid = solid;
@@ -126,6 +155,21 @@ GameObject & GameObject::operator=(GameObject & obj){
 	solid = obj.solid;
 	frames = obj.frames;
 	frameIndex = obj.frameIndex;
+	return *this;
+}
+
+GameObject & GameObject::take(Canvas & obj) {
+	operator=(obj);
+	return *this;
+}
+
+GameObject & GameObject::take(Subject & obj) {
+	operator=(obj);
+	return *this;
+}
+
+GameObject & GameObject::take(GameObject & obj) {
+	operator=(obj);
 	return *this;
 }
 

@@ -21,7 +21,8 @@ public:
 	void setDepth(int depth);
 	int getDepth();
 	// Не проверен
-	virtual bool collide(Subject& obj);
+	virtual bool placeMeeting(Subject& obj);
+	virtual bool placeMeeting(Subject& obj, int x, int y);
 };
 
 class SubjectGroup {

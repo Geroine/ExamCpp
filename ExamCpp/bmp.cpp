@@ -2,7 +2,7 @@
 #include "error.h"
 #define CC_TRUE 127
 #define CC_HALF 94
-#define CC_1W 100
+#define CC_1W 150
 #define CC_2W 127
 #define CC_3W 50
 
@@ -101,7 +101,7 @@ BMP::BMP(int width, int height) {
 
 BMP::BMP(char * filename, int mode) {
 	_open(filename);
-	upMirror();
+	if (mode == UP_MIRROR)upMirror();
 }
 
 BMP::BMP(BMP & pic) {
@@ -137,14 +137,14 @@ void BMP::rotate() {
 		}
 	}
 
-	info.biHeight = nWidth;
-	info.biWidth = nHeight;
+	info.biHeight = nHeight;
+	info.biWidth = nWidth;
 	bitmap = tmp.bitmap;
 
 }
 
 void BMP::mirror() {
-	BMP tmp(*this);
+	BMP tmp(info.biWidth, info.biHeight);
 
 	for (int i = 0; i < info.biHeight; i++) {
 		for (int j = 0, k = info.biWidth - 1; j < info.biWidth; j++, k--) {
@@ -152,7 +152,7 @@ void BMP::mirror() {
 		}
 	}
 
-	operator=(tmp);
+	bitmap = tmp.bitmap;
 }
 
 void BMP::upMirror() {
@@ -170,7 +170,7 @@ Canvas BMP::canvas(Pixel key) {
 	for (int i = 0; i < cpic.getHeight(); i++) {
 		for (int j = 0; j < cpic.getWidth(); j++) {
 			if (key.visible) {
-				if (bitmap[i][j] == key) cpic(j,i).visible = true;
+				if (bitmap[i][j] != key) cpic(j,i).visible = true;
 				else {
 					cpic(j, i).visible = false;
 					continue;
@@ -181,7 +181,7 @@ Canvas BMP::canvas(Pixel key) {
 
 			ccSum = (bitmap[i][j].rgbRed +
 					 bitmap[i][j].rgbGreen +
-					 bitmap[i][j].rgbBlue) / 3;
+					 bitmap[i][j].rgbBlue);// / 3;
 
 
 			if (bitmap[i][j].rgbRed <= 127 &&

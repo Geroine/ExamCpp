@@ -69,6 +69,9 @@
     <ClInclude Include="bmp.h">
       <Filter>Header Files\Grpahic</Filter>
     </ClInclude>
+    <ClInclude Include="wall.h">
+      <Filter>Header Files\Game\RPG_Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -100,6 +103,9 @@
     </ClCompile>
     <ClCompile Include="bmp.cpp">
       <Filter>Source Files\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="wall.cpp">
+      <Filter>Source Files\Game\RPG_Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

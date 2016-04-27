@@ -58,24 +58,32 @@ int Subject::getDepth() {
 	return depth;
 }
 // Функция сравнивает только по ширине и длинне. Доделать!
-bool Subject::collide(Subject & obj){
+// Не правильно работающая функция
+bool Subject::placeMeeting(Subject& obj) {
+	return placeMeeting(obj, x, y);
+}
+
+bool Subject::placeMeeting(Subject & obj, int x, int y) {
 	int diffX = obj.x - x;
 	int diffY = obj.y - y;
+	int result = 0;
 
-	if (diffX == 0) return true;
-	if (diffX > 0) {
-		if (width > diffX) return true;
-	} else {
-		if (obj.width > abs(diffX)) return true;
-	}
+	if (diffX == 0) result++;
+	else
+		if (diffX > 0) {
+			if (width > diffX) result++;
+		} else {
+			if (obj.width > abs(diffX)) result++;
+		}
 
-	if (diffY == 0) return true;
-	if (diffY > 0) {
-		if (height > diffY) return true;
-	} else {
-		if (obj.height > abs(diffY)) return true;
-	}
-	return false;
+	if (diffY == 0) result++;
+	else
+		if (diffY > 0) {
+			if (height > diffY) result++;
+		} else {
+			if (obj.height > abs(diffY)) result++;
+		}
+	return result == 2;
 }
 
 SubjectGroup::SubjectGroup(){

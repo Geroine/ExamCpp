@@ -5,10 +5,14 @@ Unit::Unit(GameObject & obj, int hp)
 	this->hp = hp;
 	focus = nullptr;
 	group = nullptr;
+	type = "unit";
 }
 
-Unit::Unit(GameObject & obj, UnitGroup & group, int hp) {
+Unit::Unit(GameObject & obj, UnitGroup & group, int hp)
+	:GameObject(obj){
 	this->group = &group;
+	this->hp = hp;
+	type = "unit";
 }
 
 Unit::Unit()
@@ -16,6 +20,7 @@ Unit::Unit()
 	hp = 100;
 	focus = nullptr;
 	group = nullptr;
+	type = "unit";
 }
 
 Unit & Unit::operator=(Canvas & obj){
@@ -51,6 +56,10 @@ void Unit::exitGroup() {
 
 UnitGroup * Unit::getGroup() {
 	return group;
+}
+
+string Unit::getType() {
+	return type;
 }
 
 UnitGroup::UnitGroup(){
@@ -111,6 +120,24 @@ void UnitGroup::blitAll(Canvas & canv){
 		canv.blit(unit.subject(), unit.getX(), unit.getY());
 		iter++;
 	}
+}
+
+void UnitGroup::foreach(void_unit_func func) {
+	auto iter = begin();
+	while (iter != end()) {
+		func(**iter);
+		iter++;
+	}
+}
+
+list<Unit*> UnitGroup::find(bool_unit_func func) {
+	list<Unit*> find_units;
+	auto iter = begin();
+	while (iter != end()) {
+		if (func(**iter)) find_units.push_back(*iter);
+		iter++;
+	}
+	return find_units;
 }
 
 bool UnitGroup::iterate(){

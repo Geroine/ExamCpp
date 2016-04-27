@@ -1,7 +1,10 @@
 #pragma once
 #include <list>
+#include <string>
+#include <functional>
 #include "game_basic.h"
 #include "processor.h"
+
 using namespace std;
 
 class UnitGroup;
@@ -11,6 +14,7 @@ protected:
 	int hp;
 	Unit* focus;
 	UnitGroup* group;
+	string type;
 public:
 	Unit(GameObject& obj, int hp = 100);
 	Unit(GameObject& obj, UnitGroup& group, int hp = 100);
@@ -23,6 +27,7 @@ public:
 	void setGroup(UnitGroup& g);
 	void exitGroup();
 	UnitGroup* getGroup();
+	string getType();
 
 	virtual void iteration() {  };
 
@@ -39,6 +44,7 @@ public:
 	virtual bool use() { return false; };
 
 	virtual bool collide(GameObject& obj) { return false; };
+	virtual bool collide(string type) { return false; };
 	virtual void focusAt(GameObject& obj) {};
 
 };
@@ -54,6 +60,10 @@ public:
 	list<Unit>::iterator end();
 };
 
+
+
+typedef function<void(Unit&)> void_unit_func;
+typedef function<bool(Unit&)> bool_unit_func;
 
 // Почему то тут я использую указатели для хранения, а не сами объекты. Но переделывать всё уже поздно.
 class UnitGroup : public Process {
@@ -72,6 +82,9 @@ public:
 
 	void iterateAll();
 	void blitAll(Canvas& canv);
+	// Алгоритмы для группы
+	void foreach(void_unit_func func);
+	list<Unit*> find(bool_unit_func func);
 
 	bool iterate();
 };
