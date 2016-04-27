@@ -1,22 +1,21 @@
 #include "player.h"
 #include <Windows.h>
 
-Player::Player(Canvas& sprites){
-	Unit::operator=(sprites);
+Player::Player(){
 	type = "player";
-	for (int i = 0; i < 4; i++) {
-		framePush(Frame(i * 4, 0, 4, 4));
-	}
+	//cooldown = 5;
+	//lastCooldown = 0;
 	setFrame(0);
 	// KeydownEvent KeypressedEvent
 	keyboard.on(new KeypressedEvent(VK_UP, [this]()-> bool { this->moveUp(); this->setFrame(0); return true; }));
-	keyboard.on(new KeypressedEvent(VK_DOWN, [this]()-> bool { this->moveDown(); this->setFrame(2); return true; }));
+	keyboard.on(new KeypressedEvent(VK_DOWN, [this]()-> bool { this->moveDown(); this->setFrame(0); return true; }));
 	keyboard.on(new KeypressedEvent(VK_LEFT, [this]()-> bool { this->moveLeft(); this->setFrame(1); return true; }));
-	keyboard.on(new KeypressedEvent(VK_RIGHT, [this]()-> bool { this->moveRight(); this->setFrame(3); return true; }));
+	keyboard.on(new KeypressedEvent(VK_RIGHT, [this]()-> bool { this->moveRight(); this->setFrame(1); return true; }));
 	keyboard.on(new KeypressedEvent(VK_SHIFT, [this]()-> bool {this->setFrame(-1); this->keyboard.clear();  return true; }));
 }
 
 void Player::iteration() {
+
 	control();
 }
 

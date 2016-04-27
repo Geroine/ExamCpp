@@ -72,6 +72,9 @@
     <ClInclude Include="wall.h">
       <Filter>Header Files\Game\RPG_Game</Filter>
     </ClInclude>
+    <ClInclude Include="sprite_tool.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -106,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="wall.cpp">
       <Filter>Source Files\Game\RPG_Game</Filter>
+    </ClCompile>
+    <ClCompile Include="sprite_tool.cpp">
+      <Filter>Source Files\Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

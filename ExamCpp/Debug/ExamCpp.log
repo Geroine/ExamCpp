@@ -1,9 +1,7 @@
-﻿  screen_object.cpp
-  player.cpp
-  game_basic.cpp
-c:\users\den10\source\repos\examcpp\examcpp\game_basic.cpp(33): warning C4018: '>=': signed/unsigned mismatch
-c:\users\den10\source\repos\examcpp\examcpp\game_basic.cpp(38): warning C4018: '>=': signed/unsigned mismatch
-c:\users\den10\source\repos\examcpp\examcpp\game_basic.cpp(44): warning C4018: '>=': signed/unsigned mismatch
-c:\users\den10\source\repos\examcpp\examcpp\game_basic.cpp(53): warning C4018: '<': signed/unsigned mismatch
+﻿  main.cpp
   Generating Code...
+  Skipping... (no relevant changes detected)
+  wall.cpp
+  unit.cpp
+  player.cpp
   ExamCpp.vcxproj -> C:\Users\Den10\Source\Repos\ExamCpp\Debug\ExamCpp.exe

@@ -4,11 +4,24 @@
 #include <vector>
 #include "error.h"
 
+enum {
+	F_RNORMAL,
+	F_R90,
+	F_R180,
+	F_R270,
+
+	F_MHOR,
+	F_MVERT
+};
+
+// Отзеркаливание добавить
 struct Frame {
 	int x,
 		y,
 		height,
 		width;
+	int rotate;
+	int mirror;
 	Frame(int x = 0, int y = 0, int h = 0, int w = 0);
 };
 
@@ -42,7 +55,11 @@ public:
 	Frame curFrame();
 	int getFrameIndex();
 	void blit(Canvas& obj);
+	void addFrame(Canvas& obj);
+
 	Canvas canvas(int frame);
+	Canvas canvas(Frame frame);
+	Canvas canvas(int x, int y, int w, int h);
 	Canvas canvas();
 	Subject subject();
 	Symbol& operator()(int x, int y, int frame);

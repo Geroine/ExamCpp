@@ -9,7 +9,10 @@ public:
 	Error(string message) {
 		this->message = message;
 	}
-	virtual const char* what() const throw(){
+	virtual const char* what() throw(){
 		return message.c_str();
+	}
+	string strwhat() throw() {
+		return message;
 	}
 };

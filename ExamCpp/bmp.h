@@ -50,6 +50,7 @@ class BMP {
 	BMPInfo info;
 	vector<vector<Pixel>> bitmap;
 	bool isOpen;
+	Pixel mask;
 
 	void _open(char* filename);
 
@@ -71,7 +72,11 @@ public:
 	void mirror();
 	void upMirror();
 
-	Canvas canvas(Pixel key = Pixel());
+	void setMask(Pixel p);
+	Pixel getMask();
+	void removeMask();
+
+	Canvas canvas();
 	Pixel& operator()(int x, int y);
 
 };

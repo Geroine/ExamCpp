@@ -59,8 +59,8 @@ ostream& operator<<(ostream& out, const Symbol& obj){
 Canvas::Canvas(int w, int h, Symbol bckg){
     if (w < 0) w = 50;
     if (h < 0) h = 30;
-    if (w > 100) w = 100;
-    if (h > 50) h = 50;
+    //if (w > 100) w = 100;
+    //if (h > 50) h = 50;
     width = w;
     height = h;
 
@@ -80,7 +80,7 @@ Symbol& Canvas::operator()(int x, int y){
 	if (y >= canv.size() || y < 0) throw Error("Canvas operator(): bad 'y' argument. Taked " + 
 		to_string(y) + " . And size = " + to_string(canv.size()));
 	if (x >= canv[y].size() || x < 0) throw Error("Canvas operator(): bad 'x' argument. Taked " +
-		to_string(y) + " . And size = " + to_string(canv[y].size()));
+		to_string(x) + " . And size = " + to_string(canv[y].size()));
 	return canv[y][x];
 }
 

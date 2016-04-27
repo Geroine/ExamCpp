@@ -160,6 +160,7 @@
     <ClInclude Include="screen.h" />
     <ClInclude Include="console_graphics.h" />
     <ClInclude Include="screen_object.h" />
+    <ClInclude Include="sprite_tool.h" />
     <ClInclude Include="unit.h" />
     <ClInclude Include="rpg_game.h" />
     <ClInclude Include="wall.h" />
@@ -174,6 +175,7 @@
     <ClCompile Include="screen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="screen_object.cpp" />
+    <ClCompile Include="sprite_tool.cpp" />
     <ClCompile Include="unit.cpp" />
     <ClCompile Include="wall.cpp" />
   </ItemGroup>

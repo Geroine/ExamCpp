@@ -11,8 +11,10 @@ struct MoveUnit {
 class Player : public Unit {
 protected:
 	EventListener keyboard;
+	//int cooldown;
+	//int lastCooldown;
 public:
-	Player(Canvas& sprites);
+	Player();
 	void iteration();
 
 	void control();

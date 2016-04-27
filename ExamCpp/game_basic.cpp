@@ -59,9 +59,36 @@ void GameObject::blit(Canvas & obj){
 	}
 }
 
+void GameObject::addFrame(Canvas & obj) {
+	int w = width;
+	int h = height;
+	int nw, nh;
+	nw = obj.getWidth() + w;
+	if (obj.getHeight() > height) nh = obj.getHeight(); else nh = h;
+	Canvas canv(nw, nh);
+	canv.blit(canvas(fullFrame()), 0, 0);
+	canv.blit(obj, width, 0);
+	take(canv);
+	framePush(Frame(w, 0, obj.getWidth(), obj.getHeight()));
+}
+
 Canvas GameObject::canvas(int frameId){
 	Frame frame = getFrame(frameId);
-	return Canvas();
+	Canvas canv(frame.width, frame.height);
+	canv.blit(*this, 0, 0, frame.x, frame.y, frame.width, frame.height);
+	return canv;
+}
+
+Canvas GameObject::canvas(Frame frame) {
+	Canvas canv(frame.width, frame.height);
+	canv.blit(*this, 0, 0, frame.x, frame.y, frame.width, frame.height);
+	return canv;
+}
+
+Canvas GameObject::canvas(int x, int y, int w, int h) {
+	Canvas canv(w, h);
+	canv.blit(*this, 0, 0, x, y, w, h);
+	return canv;
 }
 
 Canvas GameObject::canvas(){

@@ -12,7 +12,7 @@ class Processor {
 	list<Process*> processes;
 	int fps;
 public:
-	Processor(int fps = 10);
+	Processor(int fps = 1200);
 	void push(Process& proc);
 	bool erase(Process& proc);
 	void clear();

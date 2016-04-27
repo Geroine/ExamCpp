@@ -161,7 +161,19 @@ void BMP::upMirror() {
 	rotate();
 }
 
-Canvas BMP::canvas(Pixel key) {
+void BMP::setMask(Pixel p) {
+	mask = p;
+}
+
+Pixel BMP::getMask() {
+	return mask;
+}
+
+void BMP::removeMask() {
+	mask = Pixel();
+}
+
+Canvas BMP::canvas() {
 	Canvas cpic(info.biWidth, info.biHeight);
 	if (!isOpen) return cpic;
 
@@ -169,8 +181,8 @@ Canvas BMP::canvas(Pixel key) {
 	int ccSum;
 	for (int i = 0; i < cpic.getHeight(); i++) {
 		for (int j = 0; j < cpic.getWidth(); j++) {
-			if (key.visible) {
-				if (bitmap[i][j] != key) cpic(j,i).visible = true;
+			if (mask.visible) {
+				if (bitmap[i][j] != mask) cpic(j,i).visible = true;
 				else {
 					cpic(j, i).visible = false;
 					continue;
@@ -260,27 +272,27 @@ Canvas BMP::canvas(Pixel key) {
 			if (bitmap[i][j].rgbRed > 127 &&
 				bitmap[i][j].rgbGreen > 127 &&
 				bitmap[i][j].rgbBlue > 127 &&
-				ccSum * 3 > 383)
+				ccSum / 3 > 383)
 				ccResult = CC_White;
 
 			if (bitmap[i][j].rgbRed > 127 &&
 				bitmap[i][j].rgbGreen > 127 &&
 				bitmap[i][j].rgbBlue > 127 &&
-				ccSum * 3 > 255 &&
-				ccSum * 3 <= 383)
+				ccSum / 3 > 255 &&
+				ccSum / 3 <= 383)
 				ccResult = CC_Gray;
 
 			if (bitmap[i][j].rgbRed <= 127 &&
 				bitmap[i][j].rgbGreen <= 127 &&
 				bitmap[i][j].rgbBlue <= 127 &&
-				ccSum * 3 > 127 &&
-				ccSum * 3 <= 255)
-				ccResult = CC_Black;
+				ccSum / 3 > 100 &&
+				ccSum / 3 <= 255)
+				ccResult = CC_DarkGray;
 
 			if (bitmap[i][j].rgbRed <= 127 &&
 				bitmap[i][j].rgbGreen <= 127 &&
 				bitmap[i][j].rgbBlue <= 127 &&
-				ccSum * 3 <= 127)
+				ccSum / 3 <= 100)
 				ccResult = CC_Black;
 
 			cpic(j, i).background = ccResult;
